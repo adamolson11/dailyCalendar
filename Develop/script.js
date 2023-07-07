@@ -13,9 +13,10 @@
 $(function () {
   let html = ""
   for (let i = 9; i < 18; i++) {
+    var storeEntries= localStorage.getItem("hour-"+i) || ""
     html += ` <div id="hour-${i}" class="row time-block past">
     <div class="col-2 col-md-1 hour text-center py-3">${i}</div>
-    <textarea class="col-8 col-md-10 description" rows="3"> </textarea>
+    <textarea class="col-8 col-md-10 description" rows="3">${storeEntries} </textarea>
     <button class="btn saveBtn col-2 col-md-1" aria-label="save">
       <i class="fas fa-save" aria-hidden="true"></i>
     </button>
@@ -30,6 +31,7 @@ $(function () {
     var userEntry= $(this).siblings("textarea").val()
     var timeBlock = $(this).parent().attr("id")
     console.log("save",timeBlock,userEntry)
+    localStorage.setItem(timeBlock,userEntry)
   })
   // TODO: Add a listener for click events on the save button. 
   // element.addEventListener("click", myFunction)

@@ -7,7 +7,6 @@
 // $(function(nothing goes in here) {
 
 
-//https://www.w3schools.com/jquery/jquery_syntax.asp#:~:text=The%20Document%20Ready%20Event&text=This%20is%20to%20prevent%20any,ready%20before%20working%20with%20it.
 
 
 $(function () {

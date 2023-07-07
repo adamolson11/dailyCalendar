@@ -12,20 +12,40 @@
 
 $(function () {
   let html = ""
+  let currentHour = dayjs().hour()
+  console.log("current",currentHour)
   for (let i = 9; i < 18; i++) {
+    var color =""
+    if(i < currentHour){
+      color = "past"
+    }else if(i==currentHour){
+      color= "present"
+    }else{
+      color= "future"
+    }
+
+    var currentTimeBlock =""
+    if(i < 12){
+      currentTimeBlock = i+" AM"
+    }else if(i == 12){
+      currentTimeBlock = i+" PM"
+    }else{
+      currentTimeBlock = (i-12)+" PM"
+    }
+
     var storeEntries= localStorage.getItem("hour-"+i) || ""
-    html += ` <div id="hour-${i}" class="row time-block past">
-    <div class="col-2 col-md-1 hour text-center py-3">${i}</div>
+    html += ` <div id="hour-${i}" class="row time-block ${color}">
+    <div class="col-2 col-md-1 hour text-center py-3">${currentTimeBlock}</div>
     <textarea class="col-8 col-md-10 description" rows="3">${storeEntries} </textarea>
     <button class="btn saveBtn col-2 col-md-1" aria-label="save">
       <i class="fas fa-save" aria-hidden="true"></i>
     </button>
   </div>
-`
+` // html = html + ""
 
   }
  
-  $(".container").html(html)
+  $(".container").html(html) //.innerHTML
 
   $(".container").on("click",".saveBtn",function(){
     var userEntry= $(this).siblings("textarea").val()
